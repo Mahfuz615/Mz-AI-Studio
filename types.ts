@@ -9,3 +9,10 @@ export interface ChatMessage {
   text: string;
   sources?: GroundingSource[];
 }
+
+export interface Conversation {
+  id: string;
+  title: string;
+  messages: ChatMessage[];
+  timestamp: number;
+}

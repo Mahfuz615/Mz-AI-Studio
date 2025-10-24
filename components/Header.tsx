@@ -1,14 +1,15 @@
 import React from 'react';
-import { BotIcon, ImageIcon, EditIcon, MicrophoneIcon, FileTextIcon, CodeIcon, PackageIcon } from './Icons';
+import { BotIcon, ImageIcon, EditIcon, MicrophoneIcon, FileTextIcon, CodeIcon, PackageIcon, SettingsIcon } from './Icons';
 
 type Mode = 'chat' | 'image' | 'edit' | 'live' | 'transcribe' | 'code' | 'project';
 
 interface HeaderProps {
   mode: Mode;
   setMode: (mode: Mode) => void;
+  onOpenSettings: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ mode, setMode }) => {
+const Header: React.FC<HeaderProps> = ({ mode, setMode, onOpenSettings }) => {
   const commonButtonClasses = 'flex items-center gap-2 px-4 py-2 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-950 border-b-4';
   const activeButtonClasses = 'bg-red-600 text-white shadow-md border-red-400';
   const inactiveButtonClasses = 'bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 border-transparent';
@@ -16,9 +17,14 @@ const Header: React.FC<HeaderProps> = ({ mode, setMode }) => {
   return (
     <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm sticky top-0 z-10 p-4 shadow-lg border-b border-gray-200 dark:border-gray-800">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white tracking-wider">
-          Mz <span className="text-red-500">Studio</span>
-        </h1>
+        <div className="flex items-center gap-4">
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white tracking-wider">
+            Mz <span className="text-red-500">Studio</span>
+          </h1>
+           <button onClick={onOpenSettings} title="Settings" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+              <SettingsIcon className="w-6 h-6 text-gray-600 dark:text-gray-400" />
+           </button>
+        </div>
         <nav className="flex items-center gap-x-1 md:gap-x-2 gap-y-2 flex-wrap justify-end">
           <button
             onClick={() => setMode('chat')}

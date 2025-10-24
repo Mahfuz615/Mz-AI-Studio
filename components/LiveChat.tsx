@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenAI, Modality, LiveSession, LiveServerMessage, Blob } from '@google/genai';
+// FIX: Removed non-exported type 'LiveSession'.
+import { GoogleGenAI, Modality, LiveServerMessage, Blob } from '@google/genai';
 import { BotIcon, UserIcon, MicrophoneIcon } from './Icons';
 import { encode, decode, decodeAudioData } from '../utils/audioUtils';
 
@@ -15,7 +16,8 @@ const LiveChat: React.FC = () => {
     const [currentOutput, setCurrentOutput] = useState('');
     const [error, setError] = useState<string | null>(null);
 
-    const sessionPromiseRef = useRef<Promise<LiveSession> | null>(null);
+    // FIX: Use 'any' as the session type because 'LiveSession' is not exported from the SDK.
+    const sessionPromiseRef = useRef<Promise<any> | null>(null);
     const streamRef = useRef<MediaStream | null>(null);
     const inputAudioContextRef = useRef<AudioContext | null>(null);
     const outputAudioContextRef = useRef<AudioContext | null>(null);

@@ -1,4 +1,4 @@
-import { GoogleGenAI, Chat, Modality, Type } from "@google/genai";
+import { GoogleGenAI, Chat, Modality, Type, Content } from "@google/genai";
 import type { GroundingSource } from '../types';
 
 const API_KEY = process.env.API_KEY;
@@ -9,9 +9,10 @@ if (!API_KEY) {
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
-export const createChatSession = (): Chat => {
+export const createChatSession = (history?: Content[]): Chat => {
   const chat = ai.chats.create({
     model: 'gemini-2.5-flash',
+    history,
     config: {
       systemInstruction: 'You are Gemini, a helpful and creative AI assistant. Respond with clarity and personality.',
     },
@@ -19,9 +20,10 @@ export const createChatSession = (): Chat => {
   return chat;
 };
 
-export const createFastChatSession = (): Chat => {
+export const createFastChatSession = (history?: Content[]): Chat => {
   const chat = ai.chats.create({
     model: 'gemini-flash-lite-latest',
+    history,
     config: {
       systemInstruction: 'You are Gemini Lite, a fast and helpful AI assistant. Keep responses brief and to the point.',
     },
