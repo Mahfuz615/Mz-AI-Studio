@@ -1,0 +1,7 @@
+{
+  "name": "Mz Studio",
+  "description": "A comprehensive AI-powered creative suite leveraging the Gemini API. Features include an advanced chatbot with search grounding and thinking modes, an AI code assistant with live preview, real-time voice conversations, audio transcription, and powerful image generation and editing tools.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
